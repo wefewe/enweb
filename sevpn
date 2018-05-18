@@ -5,7 +5,7 @@ myfile=/usr/bin/sevpn
 #全局链接
 gurl="https://github.com/RosallaFie/enweb/raw/master"
 #版权
-gby="Null"
+gby="寂寞爱上海"
 nettools=/usr/bin/netstat
 rm -rf sevpn
 clear
