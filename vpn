@@ -12,26 +12,26 @@ echo "6. 查询端口运行状态"
 echo ""
 echo "请选择您需要的操作，若不输入则退出："
 read comd
-if [[ $comd == 1 ]]; then
+if [[ $comd = 1 ]]; then
 	echo "您已选择第1项，按任意键继续，或按Ctrl+C退出"
 	read
 	wget https://github.com/RosallaFie/enweb/raw/master/shadowsocksr.tar.gz
 	chmod 777 ./shadowsocksr.tar.gz
 	tar zxf ./shadowsocksr.tar.gz
 	bash ml
-elif [[ $comd == 2 ]]; then
+elif [[ $comd = 2 ]]; then
 	echo "您已选择第2项，按任意键继续，或按Ctrl+C退出"
 	read
 	wget https://github.com/RosallaFie/enweb/raw/master/sevpn
 	chmod 777 ./sevpn
 	bash sevpn
-elif [[ $comd == 3 ]]; then
+elif [[ $comd = 3 ]]; then
 	echo "您已选择第3项，按任意键继续，或按Ctrl+C退出"
 	read
 	wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
 	chmod +x bbr.sh
 	./bbr.sh
-elif [[ $comd == 4 ]]; then
+elif [[ $comd = 4 ]]; then
 	echo "您已选择第4项，按任意键继续，或按Ctrl+C退出"
 	read
 	cd /root
@@ -50,7 +50,7 @@ elif [[ $comd == 4 ]]; then
 	fi
 	echo "配置文件在/root/tinyproxy.conf"
 	echo "默认端口为:5050，默认验证头为：Hello"
-elif [[ $comd == 5 ]]; then
+elif [[ $comd = 5 ]]; then
 	echo "您已选择第5项，按任意键继续，或按Ctrl+C退出"
 	read
 	echo "请输入端口："
@@ -59,7 +59,7 @@ elif [[ $comd == 5 ]]; then
 	iptables -I INPUT -p tcp --dport $theport -j ACCEPT
 	service iptables save
 	service iptables restart
-elif [[ $comd == 6 ]]; then
+elif [[ $comd = 6 ]]; then
 	netstat -antp
 else
 	echo "程序退出"
