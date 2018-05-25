@@ -8,11 +8,10 @@ echo "2. 安装SeVPN"
 echo "3. 安装BBR加速"
 echo "4. 安装tinyproxy"
 echo "5. 放行端口"
-echo "6. 查询端口运行状态"
 echo ""
 echo "请选择您需要的操作，若不输入则退出："
 read comd
-if [[ "$comd" = "1" ]]; then
+if [ "1" -eq "comd" ]; then
 	echo "您已选择第1项，按任意键继续，或按Ctrl+C退出"
 	read
 	wget https://github.com/RosallaFie/enweb/raw/master/shadowsocksr.tar.gz
@@ -20,21 +19,21 @@ if [[ "$comd" = "1" ]]; then
 	tar zxf ./shadowsocksr.tar.gz
 	bash ml
 fi
-if [[ "$comd" = "2" ]]; then
+if [ "2" -eq "$comd" ]; then
 	echo "您已选择第2项，按任意键继续，或按Ctrl+C退出"
 	read
 	wget https://github.com/RosallaFie/enweb/raw/master/sevpn
 	chmod 777 ./sevpn
 	bash sevpn
 fi
-if [[ "$comd" = "3" ]]; then
+if [ "3" -eq "$comd" ]; then
 	echo "您已选择第3项，按任意键继续，或按Ctrl+C退出"
 	read
 	wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
 	chmod +x bbr.sh
 	./bbr.sh
 fi
-if [[ "$comd" = "4" ]]; then
+if [ "4" -eq "$comd" ]; then
 	echo "您已选择第4项，按任意键继续，或按Ctrl+C退出"
 	read
 	cd /root
@@ -45,7 +44,7 @@ if [[ "$comd" = "4" ]]; then
 	echo "输入1表示确定"
 	echo "输入其它或不输入表示不启用开机自启"
 	read onstartup
-	if [[ "$onstartup" == "1" ]]; then
+	if [ "1" -eq "$onstartup" ]; then
 		echo "/root/tinyproxy -c /root/tinyproxy.conf">>/etc/rc.local
 		echo "已设置开机自启"
 	else
@@ -54,7 +53,7 @@ if [[ "$comd" = "4" ]]; then
 	echo "配置文件在/root/tinyproxy.conf"
 	echo "默认端口为:5050，默认验证头为：Hello"
 fi
-if [[ "$comd" = "5" ]]; then
+if [ "5" -eq "$comd" ]; then
 	echo "您已选择第5项，按任意键继续，或按Ctrl+C退出"
 	read
 	echo "请输入端口："
@@ -63,7 +62,4 @@ if [[ "$comd" = "5" ]]; then
 	iptables -I INPUT -p tcp --dport $theport -j ACCEPT
 	service iptables save
 	service iptables restart
-fi
-if [[ "$comd" = "6" ]]; then
-	netstat -antp
 fi
