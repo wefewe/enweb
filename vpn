@@ -1,0 +1,71 @@
+#!/bin/bash
+
+echo "欢迎使用一键搭建源"
+echo ""
+echo "操作列表："
+echo "1. 安装SSR"
+echo "2. 安装SeVPN"
+echo "3. 安装BBR加速"
+echo "4. 安装tinyproxy"
+echo "5. 安装Gost"
+echo "6. 放行端口"
+echo ""
+echo "请选择您需要的操作，若不输入则退出："
+
+read az
+  case $az in
+    1)
+		echo "您已选择第1项，按任意键继续，或按Ctrl+C退出"
+		read
+		wget https://github.com/RosallaFie/enweb/raw/master/shadowsocksr.tar.gz
+		chmod 777 ./shadowsocksr.tar.gz
+		tar zxf ./shadowsocksr.tar.gz
+		bash ml
+	;;
+    2)
+		echo "您已选择第2项，按任意键继续，或按Ctrl+C退出"
+		read
+		wget https://github.com/RosallaFie/enweb/raw/master/sevpn
+		chmod 777 ./sevpn
+		bash sevpn
+	;;
+    3)
+		echo "您已选择第3项，按任意键继续，或按Ctrl+C退出"
+		read
+		wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
+		chmod +x bbr.sh
+		./bbr.sh
+	;;
+    4)
+		echo "您已选择第4项，按任意键继续，或按Ctrl+C退出"
+		read
+		cd /root
+		wget https://github.com/RosallaFie/enweb/raw/master/tinyproxyX64.zip
+		unzip tinyproxyX64.zip
+		chmod 777 ./tinyproxy
+		echo "/root/tinyproxy -c /root/tinyproxy.conf">>/etc/rc.local
+		echo "已设置开机自启"
+		echo "配置文件在/root/tinyproxy.conf"
+		echo "默认端口为:5050，默认验证头为：Hello"
+	;;
+	5)
+	echo "您已选择第3项，按任意键继续，或按Ctrl+C退出"
+		read
+		wget --no-check-certificate https://github.com/RosallaFie/enweb/raw/master/gost.sh
+		chmod +x gost.sh
+		./gost.sh
+	;;
+    6)
+		echo "您已选择第5项，按任意键继续，或按Ctrl+C退出"
+		read
+		echo "请输入端口："
+		read theport
+		echo "已选择端口：$theport"
+		iptables -I INPUT -p tcp --dport $theport -j ACCEPT
+		service iptables save
+		service iptables restart
+	;;
+    *)
+		echo -e "\033[31m 错误：只能选择[程序前序号]！！\033[0m"
+	;;
+  esac
